@@ -107,8 +107,9 @@ Historial de transacciones.
 
 # Tabla de endpoints:
 
-Método	Endpoint	Descripción	Parámetros	Autenticación
-POST	/v1/auth/register	Registro de usuario	body: {name, email, password, role}	No
+| METODO | ENDPOINT | DESCRIPCIÓN | PARAMETROS | AUTENTICACIÓN |
+| --- | --- |
+| POST | /v1/auth/register | Registro de usuario | body: {name, email, password, role} | No |
 POST	/v1/auth/login	Login de usuario	body: {email, password}	No
 GET	/v1/users/me	Obtener datos del usuario autenticado	headers: token	Sí
 PUT	/v1/users/me	Actualizar perfil del usuario	body: {name, phone}	Sí
