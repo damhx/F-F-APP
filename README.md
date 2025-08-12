@@ -109,5 +109,23 @@ Historial de transacciones.
 
 | MÉTODO | ENDPOINT | DESCRIPCIÓN | PARÁMETROS | AUTENTICACIÓN |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-| Content Cell | Content Cell |
-| Content Cell | Content Cell |
+| POST | /v1/auth/register | Registro de usuario	| body: {name, email, password, role}	| No |
+| POST	| /v1/auth/login	| Login de usuario	| body: {email, password}	| No |
+| GET	| /v1/users/me	| Obtener datos del usuario autenticado	| headers: token	| Sí |
+| PUT	| /v1/users/me	| Actualizar perfil del usuario	| body: {name, phone}	| Sí |
+| DELETE	| /v1/users/me	| Eliminar cuenta	headers: | token	| Sí |
+| GET	| /v1/vehicles	| Listar vehículos del conductor	| headers: token	| Rol: Conductor |
+| POST	| /v1/vehicles	| Registrar vehículo	| body: {marca, modelo, placa}	| Rol: Conductor |
+| DELETE	| /v1/vehicles/:id	| Eliminar vehículo	path: id	| Rol: Conductor |
+| POST	| /v1/rides	| Solicitar viaje	body: {origen, destino}	| Rol: Pasajero |
+| GET	| /v1/rides	| Ver mis viajes	| query: status	| Sí |
+| GET	| /v1/rides/nearby	| Buscar viajes cercanos (para conductor)	| query: location	| Rol: Conductor |
+| PATCH	| /v1/rides/:id/accept	| Aceptar viaje	| path: id	| Rol: Conductor |
+| PATCH	| /v1/rides/:id/cancel	| Cancelar viaje | path: id	 | Sí |
+| PATCH	| /v1/rides/:id/start	| Marcar inicio del viaje	| path: id	| Rol: Conductor |
+| PATCH	| /v1/rides/:id/finish	| Finalizar viaje	| path: id	| Rol: Conductor |
+| POST	| /v1/payments	| Procesar pago	| body: {ride_id, método}	| Rol: Pasajero |
+| GET	| /v1/payments/history	| Ver historial de pagos	| query: fecha	| Sí |
+| POST	| /v1/ratings	| Calificar viaje	| body: {ride_id, score, comentario}	| Sí |
+| GET	| /v1/admin/users	| Listar usuarios	| query: rol	| Rol: Admin |
+| PATCH	| /v1/admin/users/:id/block	| Bloquear usuario	| path: id	Rol: Admin |
