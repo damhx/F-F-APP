@@ -107,7 +107,7 @@ Historial de transacciones.
 
 # Tabla de endpoints:
 
-| First Header  | Second Header |
+| MÉTODO | ENDPOINT |
 | ------------- | ------------- |
 | Content Cell  | Content Cell  |
 | Content Cell  | Content Cell  |
