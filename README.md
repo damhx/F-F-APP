@@ -128,4 +128,53 @@ Historial de transacciones.
 | GET	| /v1/payments/history	| Ver historial de pagos	| query: fecha	| Sí |
 | POST	| /v1/ratings	| Calificar viaje	| body: {ride_id, score, comentario}	| Sí |
 | GET	| /v1/admin/users	| Listar usuarios	| query: rol	| Rol: Admin |
-| PATCH	| /v1/admin/users/:id/block	| Bloquear usuario	| path: id	Rol: Admin |
+| PATCH	| /v1/admin/users/:id/block	| Bloquear usuario	| path: id	| Rol: Admin |
+
+
+
+# Flujos de uso:
+
+1. Registro y verificación de un nuevo conductor:
+- Conductor envía datos personales y documentos → POST /v1/drivers.
+- Servidor guarda en estado pending_verification y notifica a admin.
+- Admin revisa y aprueba/rechaza → PATCH /v1/drivers/{id}
+- Si aprobado, servidor activa perfil y envía confirmación al conductor.
+
+2. Recuperación de contraseña de usuario:
+- Usuario solicita recuperación → POST /v1/auth/recover con email/teléfono.
+- Servidor envía código temporal por SMS/email.
+- Usuario confirma código y nueva contraseña → POST /v1/auth/reset.
+- Servidor actualiza credenciales y genera nuevo token de acceso.
+
+3. Reporte de incidente durante un viaje:
+- Pasajero o conductor envía reporte → POST /v1/incidents con ride_id, descripción, evidencias.
+- Servidor registra incidente y lo asigna a un agente de soporte.
+- Soporte contacta a las partes y actualiza estado → PATCH /v1/incidents/{id}.
+- Una vez resuelto, servidor notifica resultado a las partes y cierra el caso.
+
+
+
+# Decisiones de diseño y justificación:
+
+- Seguridad: Roles, HTTPS, cifrado de datos sensibles.
+- Privacidad: no exponer info personal, acceso solo a involucrados, borrar datos vencidos.
+- Versionado: /v1/ escalar sin romper integraciones.
+- Errores comunes: 422 datos inválidos, 404 recurso no existe, 403 sin permisos, 409 duplicados, 401 token inválido.
+
+
+
+# Manejo de errores
+
+```
+{
+  "error": true,
+  "code": 404,
+  "message": "Recurso no encontrado"
+}
+```
+
+- 400 Bad Request → Datos inválidos.
+- 401 Unauthorized → Sin autenticación.
+- 403 Forbidden → Sin permisos.
+- 404 Not Found → Recurso no existe.
+- 409 Conflict → Conflicto de estado o duplicado.
