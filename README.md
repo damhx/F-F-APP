@@ -108,6 +108,6 @@ Historial de transacciones.
 # Tabla de endpoints:
 
 | MÉTODO | ENDPOINT | DESCRIPCIÓN | PARÁMETROS | AUTENTICACIÓN |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| Content Cell | Content Cell |
+| Content Cell | Content Cell |
