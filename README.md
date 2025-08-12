@@ -107,6 +107,7 @@ Historial de transacciones.
 
 # Tabla de endpoints:
 
-| METODO | ENDPOINT | DESCRIPCIÓN | PARAMETROS | AUTENTICACIÓN |
-| --- | --- |
-| POST | /v1/auth/register | Registro de usuario | body: {name, email, password, role} | No |
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
