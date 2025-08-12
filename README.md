@@ -163,7 +163,7 @@ Historial de transacciones.
 
 
 
-# Manejo de errores
+# Manejo de errores:
 
 ```
 {
@@ -178,3 +178,12 @@ Historial de transacciones.
 - 403 Forbidden → Sin permisos.
 - 404 Not Found → Recurso no existe.
 - 409 Conflict → Conflicto de estado o duplicado.
+
+
+
+# Propuesta de mejora:
+- Historial detallado de ubicaciones para auditorías y seguridad.
+- Sistema de propinas configurable vía API después de finalizar el viaje.
+- Notificaciones push en tiempo real.
+- API de métricas para conductores (ingresos, calificaciones, eficiencia).
+- Modo de emergencia que envíe ubicación y datos del viaje a contactos de confianza.
